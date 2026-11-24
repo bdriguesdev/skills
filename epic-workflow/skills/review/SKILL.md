@@ -11,6 +11,7 @@ Arguments: `$ARGUMENTS`, expected as `<ISSUE-KEY> [TASK-ID]`. If no task ID is g
 ## 1. Define the scope
 
 - The base branch comes from CLAUDE.md (default `main`). The changes to review are `git diff <base>...HEAD` plus any uncommitted changes.
+- If the task in `plan.md` records e2e tests in an external repository (`E2E: <repository> @ <branch>`), those changes are part of the review too: `git -C <local clone path> diff <its base>...<branch>`. Pass this to the subagents.
 - If there are no changes, stop and say so.
 
 ## 2. Run three reviews in parallel

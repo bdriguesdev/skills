@@ -12,7 +12,6 @@ so nothing is hardcoded in the skills themselves.
 - Lint: `<command>`
 - Type-check: `<command>`
 - Build: `<command>`
-- E2E tests: `<command>` (see the `e2e-tests` skill for conventions)
 
 ## Git and PR conventions
 
@@ -20,8 +19,30 @@ so nothing is hardcoded in the skills themselves.
 - Branch naming: `<type>/<ISSUE-KEY>-<short-description>` (e.g. `feat/PROJ-125-invoice-export`)
 - Commit messages: <e.g., Conventional Commits>
 - Keeping branches updated: <rebase | merge>
-- PR title: `<ISSUE-KEY>: <short description>`
+- PR title: `<ISSUE-KEY>: <short description>` (at most ~70 characters)
 - PR template: <path, if any>
+- **No AI attribution:** never add a `Co-Authored-By` trailer for Claude or any AI to commits, and never add "Generated with Claude Code" (or similar) lines or session links to commits or PRs.
+
+## E2E tests
+
+<!-- Keep only the block that applies: local OR external. -->
+
+- Location: `local`
+- Path: `<e.g., e2e/>`
+
+<!--
+- Location: `external`
+- Repository: `<org>/<e2e-repo>`
+- Local clone: `<e.g., ~/code/e2e-repo>`
+- Base branch: `main`
+- Branch naming: same name as the application branch
+-->
+
+- Framework: `<e.g., Playwright | Cypress>`
+- Run all: `<command>` · Run one file: `<command>`
+- Start the app for e2e: `<command>`
+- Point the tests at the local app: `<e.g., BASE_URL=http://localhost:3000>`
+- Conventions: <page objects/helpers location, how tests log in, test data factories, a good example test to copy. For an external repository, its own README or CLAUDE.md can cover this instead.>
 
 ## Jira workflow
 
@@ -34,4 +55,4 @@ so nothing is hardcoded in the skills themselves.
 
 - Works with any Jira issue: epic, story, task, or bug.
 - Working files live in `.claude/work/<ISSUE-KEY>/` (analysis, plan, plan review, reviews).
-- Flow: `/work-analyze` → `/work-plan` → `/work-critique-plan` (for large or risky plans) → `/work-plan` (revise) → for each task: `/task-implement` → `/review` → `/task-fix` → `/task-deliver`.
+- Flow: `/work-analyze` → `/work-plan` → `/work-critique-plan` (for large or risky plans) → `/work-plan` (revise) → for each task: `/task-implement` → `/task-e2e` (when planned) → `/review` → `/task-fix` → `/task-deliver`.

@@ -29,12 +29,20 @@ Show a short plan: the files to change, the approach, and the test cases (at lea
 
 ## 4. Implement
 
-- Write the tests first, following the task's test strategy. For e2e tests, follow the `e2e-tests` skill.
+- Write the unit and integration tests first, following the task's test strategy. E2E tests are not written in this step: they have their own skill, `/task-e2e`.
 - **Bugs:** first write a regression test that reproduces the bug, run it, and confirm it fails for the expected reason. Only then fix the root cause. If the test passes before the fix, the bug isn't reproduced yet: stop and tell the user.
 - Implement until all tests pass. Run the test, lint, type-check, and build commands listed in CLAUDE.md.
 - Stay within the task's scope. If you find something outside it (a bug, a needed refactor, a missing piece), don't fix it; note it for the summary.
 - Prefer the patterns already used in the codebase over new ones.
 - Commit in small, logical commits with clear messages.
+
+## Commits: no AI attribution
+
+Every commit must look like it was written by the developer alone. This overrides Claude Code's default attribution.
+
+- No `Co-Authored-By` trailer naming Claude or any other AI.
+- No "Generated with Claude Code" (or similar) lines, and no session links.
+- Before finishing, check with `git log --format=%B <base>..HEAD`. If a commit still has attribution and hasn't been pushed, fix its message with `git commit --amend` (last commit) or tell the user which commits need rewording. Never rewrite commits that were already pushed without asking.
 
 ## 5. Finish
 
@@ -45,4 +53,4 @@ Show a short plan: the files to change, the approach, and the test cases (at lea
   - deviations from the plan, and why
   - out-of-scope findings, with suggested follow-up tickets
   - what deserves the closest human review
-- Suggest running `/review <KEY> <TASK-ID>` next.
+- Suggest the next step: `/task-e2e <KEY> <TASK-ID>` if the task's test strategy includes e2e tests, otherwise `/review <KEY> <TASK-ID>`.
