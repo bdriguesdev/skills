@@ -1,16 +1,16 @@
 ---
 name: task-fix
 description: Applies fixes from a review report or from PR review comments, triaging each item before changing code. Use when the user asks to fix review findings or address PR comments.
-argument-hint: <EPIC-KEY> <TASK-ID> [pr]
+argument-hint: <ISSUE-KEY> [TASK-ID] [pr]
 ---
 
 # Fix review feedback
 
-Arguments: `$ARGUMENTS`, expected as `<EPIC-KEY> <TASK-ID>`, optionally followed by `pr` to work from the open PR's comments.
+Arguments: `$ARGUMENTS`, expected as `<ISSUE-KEY> [TASK-ID]`, optionally followed by `pr` to work from the open PR's comments. If no task ID is given, use the only task in the plan if there is just one; otherwise ask.
 
 ## 1. Collect the feedback
 
-- Default: the review report at `.claude/epics/<EPIC-KEY>/reviews/<TASK-ID>.md` (items not yet marked fixed).
+- Default: the review report at `.claude/work/<KEY>/reviews/<TASK-ID>.md` (items not yet marked fixed).
 - With `pr`: read the PR's comments and review threads with `gh`, for example `gh pr view --comments` for general comments and `gh api repos/{owner}/{repo}/pulls/<number>/comments` for inline comments. Skip resolved threads.
 
 ## 2. Triage before changing anything
@@ -34,4 +34,4 @@ Show the triage table and wait for the user to confirm.
 
 - In the review file, set the status of each fixed item to `fixed`.
 - Tell the user what was fixed (with commits), what is waiting for discussion (with draft replies), and the proposed follow-up tickets.
-- If the changes were significant, suggest running `/review <EPIC-KEY> <TASK-ID>` again.
+- If the changes were significant, suggest running `/review <KEY> <TASK-ID>` again.

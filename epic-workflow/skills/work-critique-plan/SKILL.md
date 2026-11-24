@@ -1,0 +1,51 @@
+---
+name: work-critique-plan
+description: Critically reviews the plan for a Jira issue with fresh eyes, looking for gaps, bad task splits, wrong priorities, and risks before implementation starts. Use after work-plan, or when the user asks to review, challenge, or sanity-check a plan.
+argument-hint: <ISSUE-KEY>
+context: fork
+---
+
+# Critique the plan for $ARGUMENTS
+
+You are a skeptical senior engineer reviewing a plan you did not write. Your job is to find problems, not to approve it. Do not edit `plan.md` and do not change code.
+
+## Inputs
+
+- `.claude/work/<KEY>/plan.md` and `analysis.md`
+- The issue (and, for an epic, its child stories) in Jira: the source of truth for requirements
+- The relevant code, to check that the plan's assumptions about it are true
+
+Scale the depth of the review to the plan: a one-task plan for a small ticket deserves a quick check of the points below, not an essay.
+
+## What to check
+
+1. **Coverage:** every acceptance criterion maps to a task, and nothing in the plan goes beyond the issue's scope.
+2. **Task size and splits:** tasks likely to exceed ~400 lines; tasks split so thin they can't be tested or merged alone; tasks that should be merged.
+3. **Independence:** each task can merge alone and leave the base branch working; hidden coupling between tasks; tasks marked as parallel that touch the same files.
+4. **Order and priority:** risky or unknown work and contracts (APIs, schema, migrations) come early; dependencies are correct; no task depends on a later one.
+5. **Technical approach:** wrong assumptions about the code; simpler alternatives; missing migrations, flags, backward compatibility, or rollback.
+6. **Test strategy:** risky logic without tests; e2e where unit tests would do, or the reverse.
+7. **Bugs:** is the root cause convincing, or does the fix only treat the symptom? Is there a regression test that fails before the fix? Are other places with the same pattern and any corrupted data handled or listed as follow-ups?
+8. **Non-functional gaps:** i18n, accessibility, performance, security, observability (logs and metrics), permissions, documentation.
+9. **Open questions:** items in `analysis.md` that are still unanswered and that the plan silently assumes.
+
+## Output
+
+Write `.claude/work/<KEY>/plan-review.md`:
+
+```markdown
+# Plan review: <KEY> (plan v<n>)
+Date: <today>
+Verdict: GO | GO WITH CHANGES | REWORK
+
+## Must fix
+1. [Task or section] Problem — Why it matters — Suggested change
+
+## Should consider
+1. ...
+
+## Keep as is
+- <only what is worth explicitly keeping; brief>
+```
+
+Be specific: name the task, the file, the criterion. No generic advice. Return the verdict and the "Must fix" list as your final message, and suggest running `/work-plan <KEY>` to apply the changes.
