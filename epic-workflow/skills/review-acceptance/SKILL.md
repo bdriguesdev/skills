@@ -17,6 +17,7 @@ Report only. Do not change code.
 - The linked Jira issues: the source of truth for acceptance criteria.
 - For bugs: the diagnosis in `.claude/work/<KEY>/analysis.md` (root cause, impact, same pattern elsewhere).
 - The changes between the base branch (from CLAUDE.md, default `main`) and HEAD, plus uncommitted changes, including the tests.
+- E2E tests in an external repository, if the task records them (`E2E: <repository> @ <branch>`). They count as evidence for acceptance criteria.
 
 ## What to check
 

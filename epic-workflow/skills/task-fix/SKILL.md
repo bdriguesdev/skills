@@ -27,7 +27,8 @@ Show the triage table and wait for the user to confirm.
 
 - Apply the confirmed fixes, most severe first. Add a test for each bug fixed where possible.
 - Run the test, lint, type-check, and build commands in CLAUDE.md.
-- Commit with messages that point to the feedback, e.g. `fix: handle empty list (review #3)`.
+- Commit with messages that point to the feedback, e.g. `fix: handle empty list (review #3)`. No AI attribution in commits (no `Co-Authored-By` trailer for Claude or any AI, no "Generated with" lines).
+- Findings about e2e tests in an external repository are fixed in that repository, on the task's e2e branch.
 - Don't reply to or resolve PR threads yourself. Draft a reply per thread for the user instead.
 
 ## 4. Report
