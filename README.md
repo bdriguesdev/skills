@@ -6,7 +6,7 @@ A collection of [Claude Code](https://code.claude.com/docs/en/overview) skills.
 
 | Set | What it does |
 |-----|--------------|
-| [epic-workflow](epic-workflow/) | Takes a Jira epic from analysis to delivered PRs: analyze, plan, critique the plan, implement task by task, review (technical, acceptance criteria, security), fix, and deliver. |
+| [epic-workflow](epic-workflow/) | Takes any Jira issue (epic, story, task, or bug) from analysis to delivered PRs: analyze, plan, critique the plan, implement task by task, review (technical, acceptance criteria, security), fix, and deliver. Bugs get reproduction, root-cause analysis, and regression tests. |
 
 ## Installing a skill set
 

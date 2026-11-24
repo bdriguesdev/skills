@@ -1,6 +1,6 @@
 <!--
 Add these sections to your project's CLAUDE.md and fill them in.
-The epic workflow skills read commands and conventions from here,
+The work workflow skills read commands and conventions from here,
 so nothing is hardcoded in the skills themselves.
 -->
 
@@ -17,10 +17,10 @@ so nothing is hardcoded in the skills themselves.
 ## Git and PR conventions
 
 - Base branch: `main`
-- Branch naming: `<type>/<STORY-KEY>-<short-description>` (e.g. `feat/PROJ-125-invoice-export`)
+- Branch naming: `<type>/<ISSUE-KEY>-<short-description>` (e.g. `feat/PROJ-125-invoice-export`)
 - Commit messages: <e.g., Conventional Commits>
 - Keeping branches updated: <rebase | merge>
-- PR title: `<STORY-KEY>: <short description>`
+- PR title: `<ISSUE-KEY>: <short description>`
 - PR template: <path, if any>
 
 ## Jira workflow
@@ -30,7 +30,8 @@ so nothing is hardcoded in the skills themselves.
 - Status when the PR is open: `<In Review>`
 - Status when merged: `<Done>`
 
-## Epic workflow
+## Work workflow
 
-- Working files live in `.claude/epics/<EPIC-KEY>/` (analysis, plan, plan review, reviews).
-- Flow: `/epic-analyze` → `/epic-plan` → `/epic-critique-plan` → `/epic-plan` (revise) → for each task: `/task-implement` → `/review` → `/task-fix` → `/task-deliver`.
+- Works with any Jira issue: epic, story, task, or bug.
+- Working files live in `.claude/work/<ISSUE-KEY>/` (analysis, plan, plan review, reviews).
+- Flow: `/work-analyze` → `/work-plan` → `/work-critique-plan` (for large or risky plans) → `/work-plan` (revise) → for each task: `/task-implement` → `/review` → `/task-fix` → `/task-deliver`.
