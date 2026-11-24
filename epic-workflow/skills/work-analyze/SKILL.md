@@ -69,8 +69,8 @@ Readiness: READY | READY WITH ASSUMPTIONS | BLOCKED
 - Clarity: OK | Issues: ...
 
 ## Open questions
-| # | Question | Who answers (PO / Design / Team X) | Blocks | Proposed default |
-|---|----------|------------------------------------|--------|------------------|
+| # | Question | Issue | Who answers (PO / Design / Team X) | Blocks | Proposed default | Status |
+|---|----------|-------|------------------------------------|--------|------------------|--------|
 
 ## Assumptions
 <what will be assumed if questions stay unanswered>
@@ -83,4 +83,24 @@ For a story, task, or bug, the Scope section has a single entry.
 
 ## 5. Report back
 
-Tell the user the readiness verdict, the open questions (blocking ones first), and the top risks. For bugs, lead with the root cause. Keep it short; the details live in the file. Suggest running `/work-plan <KEY>` once the blocking questions are answered.
+Tell the user the readiness verdict, the open questions (blocking ones first), and the top risks. For bugs, lead with the root cause. Keep it short; the details live in the file.
+
+## 6. Offer to ask the open questions in Jira
+
+If there are open questions, offer to draft Jira comments that ask them. If the user accepts:
+
+1. **Group the questions by issue.** A question about one story goes on that story; questions about the epic as a whole, or that span several stories, go on the epic. For a single ticket, everything goes on that ticket.
+2. **Draft one comment per issue**, ready to paste:
+   - Write it in the language the issue itself is written in.
+   - Open with one line of context, e.g. "While analyzing this before implementation, a few points need clarification:".
+   - Number the questions, blocking ones first, and mark them as blocking.
+   - Make each question self-contained and easy to answer: say what is unclear, and offer options or the proposed default from the analysis when there is one (e.g. "Should an empty list show X or Y? If we don't hear back, we'll go with X.").
+   - Keep it short and polite. No mention of AI, Claude, or internal file names.
+   - Suggest who to mention (the reporter, the assignee, or the person in the "Who answers" column), but leave the mention for the user to confirm.
+3. **Show the drafts to the user** and let them edit.
+4. **Post only with explicit confirmation.** If the user confirms and Jira tools are available, post each comment on its issue and report the links. Otherwise, leave the drafts for the user to paste.
+5. In `analysis.md`, mark each question as `asked in <ISSUE-KEY> on <date>`.
+
+When the answers come in, running `/work-analyze <KEY>` again updates the analysis with them.
+
+Suggest running `/work-plan <KEY>` once the blocking questions are answered. If only non-blocking questions remain, planning can start using the proposed defaults.

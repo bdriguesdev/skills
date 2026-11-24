@@ -51,7 +51,7 @@ The files in `.claude/work/<KEY>/` are the contract between skills: each step re
 
 | Skill | Phase | What it does | Invocation |
 |-------|-------|--------------|------------|
-| `work-analyze` | Plan | Checks that the issue is clear; lists open questions, risks, and what exists in the code. For bugs: reproduction and root cause | `/` or automatic |
+| `work-analyze` | Plan | Checks that the issue is clear; lists open questions, risks, and what exists in the code. For bugs: reproduction and root cause. Offers to draft (and, if you confirm, post) Jira comments asking the open questions | `/` or automatic |
 | `work-plan` | Plan | Breaks the work into small, prioritized, PR-sized tasks with a test strategy each; applies the plan critique | `/` or automatic |
 | `work-critique-plan` | Plan | Skeptical review of the plan in a separate subagent, so it doesn't grade its own work | `/` or automatic |
 | `task-implement` | Implement | Implements one task: proposes first, writes tests first, stays in scope, updates the plan | `/` or automatic |
