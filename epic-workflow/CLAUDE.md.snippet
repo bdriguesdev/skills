@@ -1,0 +1,36 @@
+<!--
+Add these sections to your project's CLAUDE.md and fill them in.
+The epic workflow skills read commands and conventions from here,
+so nothing is hardcoded in the skills themselves.
+-->
+
+## Commands
+
+- Install: `<command>`
+- Test (all): `<command>`
+- Test (single file): `<command>`
+- Lint: `<command>`
+- Type-check: `<command>`
+- Build: `<command>`
+- E2E tests: `<command>` (see the `e2e-tests` skill for conventions)
+
+## Git and PR conventions
+
+- Base branch: `main`
+- Branch naming: `<type>/<STORY-KEY>-<short-description>` (e.g. `feat/PROJ-125-invoice-export`)
+- Commit messages: <e.g., Conventional Commits>
+- Keeping branches updated: <rebase | merge>
+- PR title: `<STORY-KEY>: <short description>`
+- PR template: <path, if any>
+
+## Jira workflow
+
+- Project key: `<PROJ>`
+- Status when work starts: `<In Progress>`
+- Status when the PR is open: `<In Review>`
+- Status when merged: `<Done>`
+
+## Epic workflow
+
+- Working files live in `.claude/epics/<EPIC-KEY>/` (analysis, plan, plan review, reviews).
+- Flow: `/epic-analyze` → `/epic-plan` → `/epic-critique-plan` → `/epic-plan` (revise) → for each task: `/task-implement` → `/review` → `/task-fix` → `/task-deliver`.
